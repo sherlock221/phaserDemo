@@ -28,6 +28,7 @@
         }
 
         this.create = function () {
+
             //设置世界大小  世界大小默认和舞台大小一样
             game.world.setBounds(0,0,2000,600);
             game.add.image(0,0,"bg");
@@ -40,7 +41,6 @@
             game.input.onDown.add(function(){
                 game.camera.focusOn(jqm);
             });
-
 
             //视角跟随物体
             game.camera.follow(jqm);

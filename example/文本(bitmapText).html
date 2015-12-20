@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>phaser 创建游戏</title>
+    <script type="text/javascript" src="../lib/phaser.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script type="text/javascript">
+
+
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container');
+
+
+    var stateA = {
+        //场景初始化代码
+        init: function () {
+            console.log("init..");
+
+            var text = game.add.text(0,0,"你好世界");
+            text.fill = "#fff";
+            text.font = '微软雅黑';
+            text.fontSize = 14;
+            text.fontWeight = 'normal';
+            text.wordWrap = true;
+            text.wordWrapWidth ="20px";
+
+
+
+        },
+        //加载游戏资源
+        preload: function () {
+            console.log("preload..");
+            game.load.bitmapFont("font","../font/font.png","../font/font.fnt");
+
+        },
+
+        //创建显示对象和 注册事件
+        create: function () {
+            console.log("create..");
+           game.add.bitmapText(0,200,'font',"春眠不觉晓,\n处处闻啼鸟.\n夜来风雨声,\n花落知多少.\n",30);
+
+        },
+
+        //游戏每一帧调用
+        update: function () {
+            console.log("update..");
+        },
+        //游戏每一帧调用
+        render: function () {
+            console.log("render..");
+        }
+    }
+
+    //添加场景
+    game.state.add("stateA",stateA);
+    //运行场景 启动场景
+    game.state.start("stateA");
+
+</script>
+</html>
