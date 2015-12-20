@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>资源包的使用</title>
+    <script type="text/javascript" src="../lib/phaser.js"></script>
+</head>
+<body>
+<div id="container"></div>
+
+
+</body>
+
+<script type="text/javascript">
+
+    /**
+     * pack 是包含许多资源清单的 json文件 作为一个整体进行加载
+     * 注意加载pack要放在  其它加载file文件队列 之前！！
+     * @type {Phaser.Game}
+     */
+
+
+    var state = {
+
+        preload : function(){
+            game.load.pack("main",'../pack/asset-pack.json');
+
+            //加载其它file
+            //game.load.image("xxx",'xxx');
+            //game.load.image("xxx",'xxx');
+
+        },
+
+        create : function(){
+            //加载机器猫
+            game.add.image(0,0,"jqm");
+            //播放声音
+//            game.sound.play('boden');
+
+            //加载精灵
+            var mummy = game.add.sprite(0, 100, 'mummy');
+            mummy.animations.add('walk');
+            mummy.animations.play('walk', 20, true);
+        }
+
+    };
+
+
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container', state);
+
+</script>
+</html>

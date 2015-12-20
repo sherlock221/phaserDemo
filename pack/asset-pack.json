@@ -1,0 +1,52 @@
+{ 
+    "main": [
+        {
+            "type": "image",
+            "key": "bg",
+            "url": "../assets/imgs/bg.jpg",
+            "overwrite": false
+        },
+        {
+            "type": "image",
+            "key": "jqm",
+            "url": "../assets/imgs/jiqimao.png",
+            "overwrite": false
+        },
+
+        {
+            "type": "audio",
+            "key": "boden",
+            "urls": ["../assets/audio/bodenstaendig_2000_in_rock_4bit.mp3"],
+            "autoDecode": true
+        },
+        {
+            "type": "spritesheet",
+            "key": "mummy",
+            "url": "../assets/sprites/metalslug_mummy37x45.png",
+            "frameWidth": 37,
+            "frameHeight": 45,
+            "frameMax": 18,
+            "margin": 0,
+            "spacing": 0
+        },
+
+
+        {
+            "type": "bitmapFont",
+            "key": "font",
+            "textureURL": "../assets/font/font.png",
+            "atlasURL":  "../assets/font/font.fnt",
+            "atlasData": null,
+            "xSpacing": 0,
+            "ySpacing": 0
+        }
+    ],
+
+    "meta": {
+        "generated": "1401380327373",
+        "app": "Phaser Asset Packer",
+        "url": "http://phaser.io",
+        "version": "1.0",
+        "copyright": "Photon Storm Ltd. 2014"
+    }
+}
