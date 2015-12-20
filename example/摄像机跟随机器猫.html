@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>phaser 世界舞台摄像机</title>
+    <script type="text/javascript" src="../lib/phaser.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script type="text/javascript">
+
+
+    var state = function (game) {
+
+        var jqm;
+
+        this.init = function(){
+
+        }
+
+        this.preload = function () {
+            game.load.image("bg","../imgs/bg.jpg");
+            game.load.image("jqm","../imgs/jiqimao.png")
+        }
+
+        this.create = function () {
+            //设置世界大小  世界大小默认和舞台大小一样
+            game.world.setBounds(0,0,2000,600);
+            game.add.image(0,0,"bg");
+
+            jqm = game.add.image(200,300,"jqm");
+            jqm.anchor= {x:0.5,y:0.5};
+
+
+            //按下使得jqm图片获得中心视角
+            game.input.onDown.add(function(){
+                game.camera.focusOn(jqm);
+            });
+
+
+            //视角跟随物体
+            game.camera.follow(jqm);
+
+        }
+
+        this.update = function(){
+
+            //通过方向键来控制摄像机移动
+            var keys = game.input.keyboard.createCursorKeys();
+            if(keys.right.isDown)
+                game.camera.x  += 1;
+            else if(keys.left.isDown)
+                game.camera.x -=1;
+            else if(keys.up.isDown)
+                game.camera.y -=1;
+            else if(keys.down.isDown){
+                game.camera.y +=1;
+            }
+
+
+            //向右移动一个像素
+            jqm.x +=1;
+
+        }
+    }
+
+
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container', state);
+
+
+</script>
+</html>

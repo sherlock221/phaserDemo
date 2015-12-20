@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>phaser 游戏资源加载</title>
+    <script type="text/javascript" src="../lib/phaser.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script type="text/javascript">
+
+
+    var loaderState = function (game) {
+
+        //显示加载进度文字
+        var progressText;
+
+        this.init = function(){
+
+
+            //创建loading图片
+            var sprite = game.add.image(game.world.centerX,game.world.centerY,'loading');
+            sprite.anchor = {x : 0.5,y:0.5};
+
+            //创建一个显示进度的文本
+            progressText = game.add.text(game.world.centerX,game.world.centerY+30,"0%",{fill : "#333",fontSize: '16px' });
+            progressText.anchor = {x : 0.5,y:0.5};
+
+        }
+
+        this.preload = function () {
+
+            game.load.image("loading", '../imgs/loading.gif');
+            game.load.image("bg", '../imgs/bg.jpg');
+            game.load.image("ic_launcher", '../imgs/ic_launcher.png');
+            game.load.image("jiqimao", '../imgs/jiqimao.png');
+
+            //单个资源加载完成事件
+            game.load.onFileComplete.add(function () {
+                //百分比表示
+                var progress = game.load.progress;
+                progressText.setText(progress+"%");
+
+            });
+
+            //所有资源加载完成
+            game.load.onLoadComplete.add(function () {
+                progressText.setText("加载完成");
+            });
+        }
+
+        this.create = function () {
+            //preload加载完成才会执行 create
+            console.log("create...");
+        }
+    }
+
+    /**
+     *
+     * 加载资源使用的是 Phaser.Loader对象
+     * game.load引用当前game的Phaser.Loader对象
+     */
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container', loaderState);
+
+
+</script>
+</html>

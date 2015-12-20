@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>phaser 创建游戏</title>
+    <script type="text/javascript" src="../lib/phaser.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script type="text/javascript">
+
+
+    /**
+     * width  : 宽
+     * height : 高
+     *
+     * renderer : 游戏渲染方式
+     *            Phaser.Canvas
+     *            Phaser.AUTO
+     *            Phaser.WEBGL
+     *
+     * parent : 游戏容器 一个dom元素或者id
+     * state  : 游戏的默认场景
+     * transparent : 画布是否透明
+     * antialias : 是否开启抗锯齿  默认开启
+     * physicsConfig :  物理引擎配置
+     *
+     */
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container');
+    //game.paused = true | false
+
+    game.add;  //游戏对象工厂引用
+    game.camera; //游戏摄像机对象引用
+    game.input; //用户交互事件对象引用
+    game.load; //游戏资源加载模块的引用
+    game.scale; //游戏缩放模块引用
+    game.sound; //游戏声音模块的引用
+    game.stage; //游戏舞台对象引用
+    game.world;  //游戏世界对象引用
+    game.particles; //粒子系统
+    game.physics; //物理系统
+    game.state; //场景管理对象
+
+
+    //创建 场景对象方式
+    //对象方式
+    var stateA = {
+        //场景初始化代码
+        init: function () {
+            console.log("init..");
+        },
+        //加载游戏资源
+        preload: function () {
+            console.log("preload..");
+        },
+
+        //创建显示对象和 注册事件
+        create: function () {
+            console.log("create..");
+        },
+
+        //游戏每一帧调用
+        update: function () {
+            console.log("update..");
+        },
+        //游戏每一帧调用
+        render: function () {
+            console.log("render..");
+        }
+    }
+
+    //构造函数方式
+    var stateB = function(){
+        this.init = function () {
+        };
+        this.preload = function () {
+        };
+        this.create = function () {
+        };
+        this.update = function () {
+        };
+        this.render = function () {
+        };
+    }
+
+    //添加场景
+    game.state.add("stateA",stateA);
+    //运行场景 启动场景
+    game.state.start("stateA");
+
+</script>
+</html>
